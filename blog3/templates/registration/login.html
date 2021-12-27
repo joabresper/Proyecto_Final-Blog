@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static i18n crispy_forms_tags %}
+{% block content %}
+<section>
+	<div class="container">
+	<div class="login-form">
+		<div class="jumbotron">
+			<h1 class="text-center"> Ingresar </h1>
+				<form method="POST">
+					{% csrf_token %}
+					{{form|crispy}}
+					<div>
+						<button type="submit" class="btn btn-block btn-primary">Entrar</button>
+					</div>
+				</form>
+                <div class="pt-5">
+                    <span><a href="{% url 'user_register' %}">Registrarse</a></span>
+                </div>
+		</div>
+	</div>
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+	{% if posts %}
+		{% for post in posts %}
+			<div class="card single_post">
+				<div class="body">
+					<div class="img-post">
+						<img class="d-block img-fluid" src="https://via.placeholder.com/800x280/FFB6C1/000000" alt="Imagen del Post">
+					</div>
+					<h3><a href="'<slug:pk>/detalle'">{{ post.title }}</a></h3>
+					<p>{{ post.content }}</p>
+				</div>
+				<div class="footer">
+					<div class="actions">
+						<a href="javascript:void(0);" class="btn btn-outline-secondary">Seguir leyendo</a>
+					</div>
+					<ul class="stats">
+						<li></li>
+						<li><a href="javascript:void(0);">{{post.category}}</a></li>
+						<li><a class="fa fa-heart">{{post.published_date}}</a></li>
+						
+					</ul>
+				</div>
+			</div>
+		{% endfor %}
+		   
+	{% else %}
+		<div class="alert alert-danger" role="alert">
+			No hay posts
+		</div>
+			
+	{% endif %}
+
+{% endblock %}

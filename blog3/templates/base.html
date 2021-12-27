@@ -1,0 +1,75 @@
+{% load static %}
+
+
+<html>
+<html>
+    
+<head>
+    <title>Desarrollo Sostenible</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- CSS Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+        <!-- CSS Custom -->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+
+    <body>
+    <div class="micontainer">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-3 pt-1">
+                    <p> Bienvenido <a class="col-5-1 pt-1" >{{ user.username }}</a> </p>
+                </div>
+                <div class="col-lg-1 pt-1">
+                {% if user.is_authenticated %}
+                    <div>
+                        <a class="btn btn-sm btn-outline-secondary justify-content-between" href="{% url 'user_update' %}">Perfil</a>
+                        <a class="btn btn-sm btn-outline-secondary justify-content-between" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </div>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Nuevo Post</a>
+                {% else %}
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'user_register' %}">Registrarse</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Iniciar Sesión</a>
+                {% endif %} 
+                </div>
+            </div>
+        </header>
+
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-success">
+            <div class="col-md-6 px-0">
+                <h1 class="font-weight-bold">Desarrollo Sostenible</h1>
+                <p class="lead my-3">Juntos podemos lograrlo</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="header">
+                <h2>Categorías</h2>
+            </div>
+            <div class="body widget">
+                {% if category_list %}
+                    {% for category in category_list %}
+                        <ul class="list-unstyled categories m-b-0">
+                            <li>{{category.name}}</li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <li><a></a>No hay categorias</li>
+                {% endif %}
+            </div>
+        </div>
+
+        {% block content %}
+
+
+        {% endblock %}
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+
+</html>
